@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://d2pm6r2w34k3q"]
+
+[ext_resource type="PackedScene" uid="uid://cf4aa0ca6trht" path="res://teru_teru_bozo.tscn" id="1_0e48y"]
+[ext_resource type="Texture2D" uid="uid://7km6jnl7jjqi" path="res://Assets/Wood Floor.png" id="2_0e48y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
+size = Vector2(1437, 20)
+
+[node name="Node2D" type="Node2D" unique_id=650674372]
+
+[node name="TeruTeruBozo" parent="." unique_id=121147116 instance=ExtResource("1_0e48y")]
+lock_rotation = true
+groundSpeed = Vector2(0, 0)
+
+[node name="AnimatableBody2D" type="StaticBody2D" parent="." unique_id=1135707808]
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D" unique_id=2133585087]
+position = Vector2(0.5000076, 133)
+scale = Vector2(44.96875, 0.68749976)
+texture = ExtResource("2_0e48y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=875605064]
+position = Vector2(-0.5, 133)
+shape = SubResource("RectangleShape2D_0e48y")

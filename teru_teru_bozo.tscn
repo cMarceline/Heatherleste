@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://cf4aa0ca6trht"]
+
+[ext_resource type="Script" uid="uid://bgyfjklhy1asf" path="res://Scripts/Heather.gd" id="1_ctqvm"]
+[ext_resource type="Texture2D" uid="uid://bdi6i0vvwgx2f" path="res://Assets/slime spritesheet calciumtrice.png" id="2_v4jay"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y32ns"]
+radius = 20.0
+height = 50.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0e48y"]
+atlas = ExtResource("2_v4jay")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epypp"]
+atlas = ExtResource("2_v4jay")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hol4"]
+atlas = ExtResource("2_v4jay")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6r6c"]
+atlas = ExtResource("2_v4jay")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdubu"]
+atlas = ExtResource("2_v4jay")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d21ai"]
+atlas = ExtResource("2_v4jay")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rj586"]
+atlas = ExtResource("2_v4jay")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4d7sh"]
+atlas = ExtResource("2_v4jay")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ir8iy"]
+atlas = ExtResource("2_v4jay")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqns4"]
+atlas = ExtResource("2_v4jay")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wtcfe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0e48y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epypp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0hol4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6r6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdubu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d21ai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rj586")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4d7sh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ir8iy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqns4")
+}],
+"loop": true,
+"name": &"Wtf",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="TeruTeruBozo" type="RigidBody2D" unique_id=1987230039]
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_ctqvm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1063092938]
+shape = SubResource("CapsuleShape2D_y32ns")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1062415056]
+position = Vector2(0.49999392, -65.875)
+scale = Vector2(3.7187502, 5.632813)
+sprite_frames = SubResource("SpriteFrames_wtcfe")
+animation = &"Wtf"
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=381040651]
+
+[node name="dashTimer" type="Timer" parent="." unique_id=1282271088]
