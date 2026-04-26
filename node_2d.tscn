@@ -9,8 +9,10 @@ size = Vector2(1437, 20)
 [node name="Node2D" type="Node2D" unique_id=650674372]
 
 [node name="TeruTeruBozo" parent="." unique_id=121147116 instance=ExtResource("1_0e48y")]
+gravity_scale = 0.0
 lock_rotation = true
-groundSpeed = Vector2(0, 0)
+
+[node name="Camera2D" type="Camera2D" parent="TeruTeruBozo" unique_id=317408048]
 
 [node name="AnimatableBody2D" type="StaticBody2D" parent="." unique_id=1135707808]
 

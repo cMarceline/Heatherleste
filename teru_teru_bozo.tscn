@@ -107,3 +107,4 @@ animation = &"Wtf"
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=381040651]
 
 [node name="dashTimer" type="Timer" parent="." unique_id=1282271088]
+wait_time = 0.25
