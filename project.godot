@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 Global="*uid://cvop4sivgb6wu"
 
+[dotnet]
+
+project/assembly_name="CEletstes weather"
+
 [input]
 
 Left={

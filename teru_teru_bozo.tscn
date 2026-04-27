@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bgyfjklhy1asf" path="res://Scripts/Heather.gd" id="1_ctqvm"]
 [ext_resource type="Texture2D" uid="uid://bdi6i0vvwgx2f" path="res://Assets/slime spritesheet calciumtrice.png" id="2_v4jay"]
+[ext_resource type="Texture2D" uid="uid://dt8ewuy3iyckc" path="res://Assets/Teru teru bozo-Sheet.png" id="3_v4jay"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y32ns"]
 radius = 20.0
@@ -47,6 +48,38 @@ region = Rect2(256, 0, 32, 32)
 atlas = ExtResource("2_v4jay")
 region = Rect2(288, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kx32n"]
+atlas = ExtResource("3_v4jay")
+region = Rect2(64, 0, 14, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_upm3f"]
+atlas = ExtResource("3_v4jay")
+region = Rect2(78, 0, 14, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_btw57"]
+atlas = ExtResource("3_v4jay")
+region = Rect2(92, 0, 14, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnuin"]
+atlas = ExtResource("3_v4jay")
+region = Rect2(106, 0, 14, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilxg0"]
+atlas = ExtResource("3_v4jay")
+region = Rect2(120, 0, 14, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_seah2"]
+atlas = ExtResource("3_v4jay")
+region = Rect2(134, 0, 14, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktkes"]
+atlas = ExtResource("3_v4jay")
+region = Rect2(148, 0, 14, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogupn"]
+atlas = ExtResource("3_v4jay")
+region = Rect2(162, 0, 14, 25)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_wtcfe"]
 animations = [{
 "frames": [{
@@ -88,6 +121,35 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kx32n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_upm3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_btw57")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hnuin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilxg0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_seah2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktkes")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogupn")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
 }]
 
 [node name="TeruTeruBozo" type="RigidBody2D" unique_id=1987230039]
@@ -102,7 +164,7 @@ shape = SubResource("CapsuleShape2D_y32ns")
 position = Vector2(0.49999392, -65.875)
 scale = Vector2(3.7187502, 5.632813)
 sprite_frames = SubResource("SpriteFrames_wtcfe")
-animation = &"Wtf"
+animation = &"new_animation"
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=381040651]
 
