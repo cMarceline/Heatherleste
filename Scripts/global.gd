@@ -6,8 +6,10 @@ var inputVector : Vector2 :
 		Input.get_action_raw_strength("Down") - Input.get_action_raw_strength("Up")
 	)
 
-var inputJump : bool : 
+@export var inputJump : bool : 
 	get : return Input.get_action_raw_strength("Jump")
+signal jumpPressed
 	
 var inputDash : bool :
 	get : return Input.is_action_just_pressed("Dash")
+signal dashPressed

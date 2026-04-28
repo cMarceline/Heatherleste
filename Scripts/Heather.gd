@@ -1,23 +1,25 @@
 extends RigidBody2D
 
-const gravity : float = 9.8
-const aerialDrag := Vector2(0.999,0.98)
+const jumpSpeed : float = 400
+const gravity : float = 9.8 * 60
+const aerialDrag := Vector2(0.98,0.98) * 60
 const terminalVelocity := (gravity * aerialDrag.y) / (1 - aerialDrag.y) 
 signal groundContactVelocity(x)
 
 const groundSpeed : float = 400
 const friction : float = 0.1 * 60
 const dashSpeed : float = 1000
+var velocitySign : Vector2 :
+	get : return linear_velocity.sign()
 
-signal dashPressed
 @onready var dashTimer : Timer = $dashTimer
 
 var groundVelocity : Vector2 # groundVelocity.y acts as the bounce retention
 
 func _ready() -> void:
 	groundContactVelocity.connect(_bounceCalculation)
-	dashPressed.connect(_bounceCalculations)
-	
+	Global.dashPressed.connect(_dashCalc)
+	Global.jumpPressed.connect(_jumpCalc)
 
 var onFloor : bool
 func _onFloorCheck(state: PhysicsDirectBodyState2D) :
@@ -40,35 +42,52 @@ func _onWallCheck(state: PhysicsDirectBodyState2D) :
 			return true
 	return false
 
-func _bounceCalculation(bounce : Vector2) : 
-	if -bounce.y > terminalVelocity : 
-		groundVelocity.y = -bounce.y
+func _bounceCalculation(bounce : Vector2) :
+	bounce.x -= linear_velocity.x
+	if bounce.y < terminalVelocity : 
+		groundVelocity.y = -bounce.y - terminalVelocity
+
+func _jumpCalc() : 
+	if !onFloor : return
+	print(groundVelocity.y)
+	linear_velocity.y -= jumpSpeed + groundVelocity.y
 
 func _dashCalc()  : 
 	var normalisedInputVector = Global.inputVector.normalized()
-	if Global.inputVector.x == linear_velocity.x / abs(linear_velocity.x) : 
-		normalisedInputVector.x += dashSpeed
+	if normalisedInputVector == Vector2.ZERO :
+		return
+	if Global.inputVector.x == velocitySign.x : 
+		linear_velocity.x += dashSpeed * normalisedInputVector.x
 	else :
-		normalisedInputVector.x = dashSpeed
-	if Global.inputVector.y == linear_velocity.y / abs(linear_velocity.y) : 
-		normalisedInputVector.y += dashSpeed
+		linear_velocity.x = dashSpeed * normalisedInputVector.x
+	if Global.inputVector.y == velocitySign.y : 
+		linear_velocity.y += dashSpeed * normalisedInputVector.y
 	else : 
-		normalisedInputVector.y = dashSpeed
-
+		linear_velocity.y = dashSpeed * normalisedInputVector.y
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	onFloor = _onFloorCheck(state)
 	onWall = _onWallCheck(state)
-	if !onFloor :
-		linear_velocity.y += gravity
-		linear_velocity.y *= aerialDrag.y
-	
+	if Global.inputDash : 
+		Global.dashPressed.emit()
+	if Global.inputJump : 
+		Global.jumpPressed.emit()
+
 func _physics_process(delta: float) -> void:
 	if onFloor :
 		# Write to the Grounded Momentum
 		groundVelocity.x = linear_velocity.x
-		#if linear_velocity.y > terminalVelocity :
-		linear_velocity.x = lerp(linear_velocity.x,groundSpeed*Global.inputVector.x,friction*delta)
+		linear_velocity.x = round(lerp(linear_velocity.x,groundSpeed*Global.inputVector.x,friction*delta))
+		groundVelocity.y = round(lerp(groundVelocity.y,0.0,friction*delta))
+		#print(linear_velocity)
+		
+	if !onFloor :
+		linear_velocity.y += gravity * delta
+		linear_velocity.y *= aerialDrag.y * delta
+		#linear_velocity.x += gravity * Global.inputVector.x * delta
+		#if Global.inputVector.x != velocitySign.x : 
+		#	linear_velocity.x *= aerialDrag.x
+
 	
 	
 	# Walking
